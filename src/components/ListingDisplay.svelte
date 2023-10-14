@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Listing } from '$lib/types.ts';
+	import type { Listing } from '$lib/types.ts';
 	export let props: Listing;
 </script>
 

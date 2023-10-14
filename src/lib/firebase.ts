@@ -15,8 +15,8 @@ const firebaseConfig = {
 	projectId: 'yardseller-721ca',
 	storageBucket: 'yardseller-721ca.appspot.com',
 	messagingSenderId: '129861560051',
-	appId: '1:129861560051:web:85d48a4e87105e4be1f986',
-	measurementId: 'G-N2GH9XHMNJ'
+	appId: '1:129861560051:web:6158d214845dcc84e1f986',
+	measurementId: 'G-HCDLJ2RLRG'
 };
 
 // Initialize Firebase
