@@ -39,19 +39,10 @@
 <div class="container">
 	<h1>Home</h1>
 	<div class="listing-display">
-		{#each listings as listing, index}
-			{#if index % 2 == 0}
-				<div class="row">
-					<div class="item">
-						<ListingDisplay props={listing} />
-					</div>
-					{#if listings[index + 1]}
-						<div class="item">
-							<ListingDisplay props={listing} />
-						</div>
-					{/if}
-				</div>
-			{/if}
+		{#each listings as listing}
+			<div class="item">
+				<ListingDisplay props={listing} />
+			</div>
 		{/each}
 	</div>
 </div>
@@ -63,14 +54,13 @@
 		font-family: Arial, Helvetica, sans-serif;
 		display: flex;
 		justify-content: center;
+		align-items: center;
+		flex-direction: column;
 	}
 
 	.listing-display {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	.row {
-		display: flex;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
 	}
 </style>

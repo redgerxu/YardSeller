@@ -13,7 +13,7 @@
 			</a>
 		</div>
 		<div class="item">
-			<a href="/">
+			<a href="/explore">
 				<Search color="white" />
 				<span>Explore</span>
 			</a>
