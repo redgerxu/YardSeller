@@ -1,14 +1,13 @@
 <script lang="ts">
 	import ListingDisplay from './../components/ListingDisplay.svelte';
-	import { onAuthStateChanged } from 'firebase/auth';
-	import { auth, db } from '$lib/firebase';
-	import { redirect } from '@sveltejs/kit';
+	import { db } from '$lib/firebase';
 	import { collection, getDocs } from 'firebase/firestore';
 	import type { Listing } from '$lib/types';
+	import { onMount } from 'svelte';
 
-	let user = null;
-	let latitude = null;
-	let longitude = null;
+	let latitude: number | null = null;
+	let longitude: number | null = null;
+
 	let listings: Listing[] = [];
 
 	const getLocation = () => {
@@ -22,17 +21,6 @@
 		}
 	};
 
-	onAuthStateChanged(auth, (authUser) => {
-		if (authUser) {
-			// User is signed in
-			user = authUser;
-		} else {
-			// User is signed out
-			user = null;
-			redirect(300, '/login');
-		}
-	});
-
 	const fetchData = async () => {
 		getLocation();
 
@@ -40,8 +28,12 @@
 
 		const queries = await getDocs(listingsCollec);
 
-		listings = queries.docs.map((query) => query.data as unknown as Listing);
+		listings = queries.docs.map((query) => {
+			return query.data() as unknown as Listing;
+		});
 	};
+
+	onMount(() => fetchData());
 </script>
 
 <div class="container">

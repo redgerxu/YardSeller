@@ -2,8 +2,9 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { doc, getFirestore } from 'firebase/firestore';
-import type { User } from 'firebase/auth';
+import type { User as FirebaseUser } from 'firebase/auth';
 import type { DocumentReference } from 'firebase/firestore';
+import type { User } from './types';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,6 +26,6 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 
-export const userDoc = (user: User): DocumentReference => {
+export const userDoc = (user: User | FirebaseUser): DocumentReference => {
 	return doc(db, 'users/' + user.uid);
 };

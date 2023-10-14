@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Listing } from '$lib/types.ts';
+	import type { Listing } from '$lib/types';
 	export let props: Listing;
 </script>
 
 <div class="container">
 	<img src={props.photoURL} alt={props.description} />
-	<h1>{props.name}</h1>
+	<h1>{props.itemName}</h1>
 	<p>{props.description}</p>
 </div>
 

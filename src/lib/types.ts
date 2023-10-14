@@ -18,7 +18,7 @@ export interface Location {
 export interface User {
 	name: string;
 	email: string;
-	phoneNumber: string;
+	phoneNumber: string | null;
 	listings: DocumentReference[];
 	uid: string;
 }

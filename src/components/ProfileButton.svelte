@@ -10,12 +10,27 @@
 
 <div class="container">
 	{#if user}
-		<img src={user.photoURL ? user.photoURL : 'static/favicon.png'} alt="avatar" />
-		{user.displayName}
+		<img
+			src={user.photoURL ? user.photoURL : 'static/favicon.png'}
+			alt="avatar"
+			width="auto"
+			height="40px"
+		/>
+		<span>{user.displayName}</span>
 	{:else}
 		<SignIn />
 	{/if}
 </div>
 
 <style lang="scss">
+	.container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	img {
+		border-radius: 100em;
+		margin-right: 0.25em;
+	}
 </style>
