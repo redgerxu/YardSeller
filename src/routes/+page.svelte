@@ -5,25 +5,9 @@
 	import type { Listing } from '$lib/types';
 	import { onMount } from 'svelte';
 
-	let latitude: number | null = null;
-	let longitude: number | null = null;
-
 	let listings: Listing[] = [];
 
-	const getLocation = () => {
-		if ('geolocation' in navigator) {
-			navigator.geolocation.getCurrentPosition((position) => {
-				latitude = position.coords.latitude;
-				longitude = position.coords.longitude;
-			});
-		} else {
-			alert('Geolocation is not available in your browser.');
-		}
-	};
-
 	const fetchData = async () => {
-		getLocation();
-
 		const listingsCollec = collection(db, 'listings/');
 
 		const queries = await getDocs(listingsCollec);
