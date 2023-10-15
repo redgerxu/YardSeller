@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { userDoc } from '$lib/firebase';
+	import AuthorLink from './../../../components/AuthorLink.svelte';
 	import type { Listing, User } from '$lib/types';
 	import { getDoc } from 'firebase/firestore';
 	import { onMount } from 'svelte';
@@ -15,7 +15,6 @@
 	};
 
 	onMount(getAuthor);
-	console.log(data.createdAt);
 </script>
 
 <div class="container">
@@ -24,7 +23,12 @@
 		<div class="text">
 			<h1>{data.itemName}</h1>
 			<span
-				>Posted by {author?.name} on {new Date(data.createdAt.seconds * 1000).toDateString()}</span
+				>Posted by
+				{#if author}
+					<AuthorLink name={author.name} uid={author.uid} />
+				{:else}
+					...
+				{/if} on {new Date(data.createdAt.seconds * 1000).toDateString()}</span
 			>
 			<hr />
 			<span>{@html data.description}</span>

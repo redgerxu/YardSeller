@@ -20,6 +20,7 @@ export interface User {
 	name: string;
 	email: string;
 	phoneNumber: string | null;
+	photoURL: string;
 	listings: DocumentReference[];
 	uid: string;
 }

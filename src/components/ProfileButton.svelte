@@ -1,11 +1,19 @@
 <script lang="ts">
-	import { auth } from '$lib/firebase';
+	import { auth, userDoc } from '$lib/firebase';
 	import { onAuthStateChanged, type User } from 'firebase/auth';
 	import SignIn from './SignIn.svelte';
+	import { getDoc, updateDoc } from 'firebase/firestore';
 
 	let user: User | null = null;
 
-	onAuthStateChanged(auth, (authUser) => (user = authUser));
+	onAuthStateChanged(auth, async (authUser) => {
+		user = authUser;
+		if (authUser) {
+			const doc = userDoc(authUser);
+
+			updateDoc(doc, { photoURL: authUser.photoURL ?? '' });
+		}
+	});
 </script>
 
 <div class="container">
