@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { redirect } from '@sveltejs/kit';
 	import Search from 'svelte-material-icons/Magnify.svelte';
 
 	let inputValue = ''; // Initialize a variable to store the input value
@@ -9,7 +11,9 @@
 		inputValue = target.value;
 	}
 
-	const submit = () => {};
+	const submit = () => {
+		goto('/explore?query=' + inputValue);
+	};
 </script>
 
 <div class="container">
@@ -35,7 +39,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		position: relative;
 		overflow: hidden;
 	}
 
@@ -44,13 +47,11 @@
 		margin-bottom: 1em;
 		border-width: 0;
 		margin-left: 1.5em;
+		padding-right: 0.25em;
 		padding-top: 1em;
 		padding-bottom: 1em;
-		position: absolute;
-		left: 0;
 		width: auto;
 		flex: 1;
-		width: 85%;
 	}
 
 	button {

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import type { Listing, User } from '$lib/types';
 	import { getDoc } from 'firebase/firestore';
 	import { onMount } from 'svelte';
@@ -15,11 +16,11 @@
 	onMount(() => fetchData());
 </script>
 
-<div class="container">
-	<img src={props.photoURL} alt={props.description} />
+<button class="container" on:click={() => goto('/listings/' + props.uid)}>
+	<img src={props.photoURL} alt={props.itemName} />
 	<h1>{props.itemName} - {authorName}</h1>
 	<p>{props.description}</p>
-</div>
+</button>
 
 <style lang="scss">
 	.container {

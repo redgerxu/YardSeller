@@ -1,12 +1,13 @@
-import type { DocumentReference } from 'firebase/firestore';
+import type { DocumentReference, Timestamp } from 'firebase/firestore';
 
 export interface Listing {
 	itemName: string;
 	description?: string;
-	createdAt: Date;
+	createdAt: Timestamp;
 	location: Location;
 	photoURL: string;
 	author: DocumentReference;
+	uid: string;
 }
 
 export interface Location {
